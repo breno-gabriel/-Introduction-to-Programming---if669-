@@ -1,0 +1,110 @@
+#Recebendo o valor do tamanho da matriz.
+tam_matriz = int(input())
+
+#Construindo a matriz.
+matriz = []
+
+for i in range(tam_matriz):
+    matriz.append(input().split())
+
+for i in range(tam_matriz):
+    for j in range(tam_matriz):
+        matriz[i][j] = int(matriz[i][j])
+
+#Verificando matriz nula.
+confirmacao_nulidade = False 
+lista2 = []
+matriz_nula = []
+for i in range(tam_matriz):
+    i = 0 
+    lista2.append(i)
+
+for i in range(tam_matriz):
+    matriz_nula.append(lista2)
+
+if matriz == matriz_nula:
+    confirmacao_nulidade = True
+
+#Verificando as linhas.
+maior_soma_linha = 0
+parte_um_senha = ''
+for i in range(len(matriz)):
+    for j in range(len(matriz[i])):
+        if j < len(matriz[i]) - 1:  
+            a = matriz[i][j]
+            b = matriz[i][j + 1]
+            soma_linha = a + b
+            if soma_linha > maior_soma_linha:
+                maior_soma_linha = soma_linha
+                c = str(a)
+                d = str(b)
+                parte_um_senha = c + d 
+            a = b 
+
+# Criando uma matriz transposta:
+matriz_transposta = []
+lista2 = []
+for i in range(tam_matriz):
+    i = 0 
+    lista2.append(i)
+
+for i in range(tam_matriz):
+    matriz_transposta.append(lista2[:])
+
+for i in range(tam_matriz):
+    for j in range(tam_matriz):
+        matriz_transposta[i][j] = matriz[j][i]
+
+#Verificando as colunas(Fazendo uso da matriz transposta).
+maior_soma_coluna = 0
+parte_dois_senha = ''
+for i in range(len(matriz_transposta)):
+    for j in range(len(matriz_transposta[i])):
+        if j < len(matriz_transposta[i]) - 1:  
+            a = matriz_transposta[i][j]
+            b = matriz_transposta[i][j + 1]
+            soma_coluna = a + b
+            if soma_coluna > maior_soma_coluna:
+                maior_soma_coluna = soma_coluna
+                c = str(a)
+                d = str(b)
+                parte_dois_senha = c + d 
+            a = b 
+
+# Verificando as diagonais.
+diagonal_principal = []
+maior_soma_diagonal = 0 
+parte_tres_senha = ''
+
+for i in range(tam_matriz):
+    for j in range(tam_matriz):
+        if i == j:
+            diagonal_principal.append(matriz[i][j])
+
+for i in range(len(diagonal_principal)):
+    if i < (len(diagonal_principal) - 1):
+        a = diagonal_principal[i]
+        b = diagonal_principal[i + 1]
+        soma = a + b
+        if soma > maior_soma_diagonal:
+            maior_soma_diagonal = soma 
+            c = str(a)
+            d = str(b)
+            parte_tres_senha = c + d 
+        a = b
+
+#Imprimindo a senha.
+senha_completa = parte_um_senha + parte_dois_senha + parte_tres_senha
+
+if confirmacao_nulidade == True:
+    senha_completa = '000000'
+    print("Falei que era fácil Dustinzinho...")
+    print("Pegando todas os números que formam as combinações dos pares de cada sentido temos...")
+    print(f"Password: {senha_completa}")
+else:
+    print("Falei que era fácil Dustinzinho...")
+    print("Pegando todas os números que formam as combinações dos pares de cada sentido temos...")
+    print(f"Password: {senha_completa}")
+
+
+
